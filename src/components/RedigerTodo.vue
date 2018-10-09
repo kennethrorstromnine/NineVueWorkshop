@@ -14,16 +14,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
+import { todoService } from "@/services/todo.service";
 
 @Component
 export default class RedigerTodo extends Vue {
   private todo: string = "";
 
+  @Watch("$route.params.id") onRouteChange(){
+    this.todo = todoService.hent(+this.$route.params.id);
+  }
+
   private opret(): void {
-
-    console.log("Todo", this.todo);
-
+    todoService.opret(this.todo);
+    console.log("Todo", todoService.hentListen());
+    // this.$emit("opret", this.todo);
+    this.$store.dispatch('FETCH_TODOS');
+    this.todo = "";
   }
 }
 </script>

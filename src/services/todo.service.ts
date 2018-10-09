@@ -1,6 +1,6 @@
 
 export class TodoService {
-    private liste: string[] = [];
+    private liste: string[] = ['Strikkecafen', 'Moster Kenneth'];
 
     public opret(todo: string): void {
         this.liste.push(todo);
