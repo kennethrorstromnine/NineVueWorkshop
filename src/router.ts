@@ -12,6 +12,11 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/todo',
+      name: 'todo',
+      component: () => import(/* webpackChunkName: "todo" */ './views/Todo.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
